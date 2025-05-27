@@ -5,12 +5,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ByteTabs Portfolio</title>
+   
+
+        <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.151.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.151.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shadcn-ui@latest/dist/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-
-
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --bg-light: #fafaf7;
@@ -194,7 +210,7 @@
         }
 
         .headline {
-            font-size: 7rem;
+            font-size: 6rem;
             font-weight: 700;
             line-height: 1.2;
             color: var(--bg-light);
@@ -226,8 +242,8 @@
 
 .logo-list li {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
 }
 
@@ -249,7 +265,7 @@ svg {
 
 
 .capabilities-section {
-  padding: 10rem 3.5rem 0rem 3.5rem;
+  padding: 8rem 3.5rem 0rem 3.5rem;
   background: var(--bg-accent);
   text-align: center;
 }
@@ -265,7 +281,7 @@ svg {
 
 .capability-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin:3rem 3rem;
 }
@@ -292,7 +308,6 @@ svg {
 
 
 
-
 .contact {
   margin: 2rem;
 }
@@ -304,21 +319,17 @@ svg {
   margin-bottom: 2rem;
 }
 
-/* Flex align the top row */
 .heading-row {
   display: inline-flex;
   align-items: center;
-  gap: 1rem; /* spacing between text and arrow */
+  gap: 1rem;
 }
 
-/* Adjust the arrow size to match text height */
 .animated-heading > .heading-row svg {
   height: 1.2em;
   width: 1.2em;
-  margin-top: 0.1em;  /* fine-tune vertical alignment */
+  margin-top: 0.1em;
 }
-
-
 
 #word-rotate {
   color: #007BFF;
@@ -327,64 +338,338 @@ svg {
   font-style: italic;
 }
 
-form {
+/* New styles for contact details */
+.contact-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+
+
+.contact-details {
+  font-size: 1.2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0rem;
+  margin-left: 0.5rem;
+  margin-top: 10rem;
 }
 
-input, textarea {
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+.contact-details>p{
+  margin: 0.2rem 0;
 }
-
-input:focus, textarea:focus {
-  border-color: #007BFF;
-  outline: none;
+.contact-details .submit-brief > svg {
+  vertical-align: middle;
+  color:var(--dark);
+  margin-left: 0.5rem;
+  width: 1.2rem;   /* use rem units for consistency */
+  height: 1.2rem;
+  fill: currentColor; /* optional: to make the icon follow text color */
 }
-
-.btn {
-  padding: 0.8rem;
-  font-size: 1rem;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
+.submit-brief {
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.btn:hover {
-  background-color: #0056b3;
+
+
+
+
+
+
+
+
+
+
+
+
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5rem 1rem 3.5rem;
+  background-color: #111;
+  color: #eee;
+  font-size: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-a {
-  color: #007BFF;
+.footer-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footer-left a {
+  color: #aaa;
   text-decoration: none;
+  position: relative;
+  transition: color 0.3s;
 }
 
-a:hover {
-  text-decoration: underline;
+.footer-left a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
 }
+
+.footer-left a:hover {
+  color: #fff;
+}
+
+.footer-left a:hover::after {
+  width: 100%;
+}
+
+.footer-right {
+  display: flex;
+  gap: 2rem;
+}
+
+.social-link {
+  color: #aaa;
+  font-size: 1.4rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-link:hover {
+  color: #fff;
+  transform: scale(1.2) rotate(3deg);
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  .site-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .footer-left {
+    justify-content: center;
+  }
+
+  .footer-right {
+    justify-content: center;
+  }
+}
+
+
+
+
+
+
+
+
+.quote-section {
+  text-align: left;
+  padding: 10rem 3rem 3rem 3rem;
+  font-size: 2.5rem;
+  color: #ccc;
+}
+
+.quote-section >h2 {
+  margin: 0;
+}
+
+
+
+
+
+
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 4rem;
+}
+
+.tech-card {
+  aspect-ratio: 1 / 1; /* Makes the card perfectly square */
+  background: #1a1a1a;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.tech-card:hover {
+  background: #2b2b2b;
+}
+
+.tech-text {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #ccc;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .work-header {
+      color: #fff;
+      padding: 1rem 3.5rem;
+    }
+
+    .work-header>h1 {
+      font-size: 6rem;
+      line-height: 1.2;
+    }
+
+    .work-categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 1rem 3.5rem;
+
+    }
+
+    .work-categories>a {
+      text-decoration: none;
+            background: var(--bg-light);
+            padding: 0.5rem 1rem;
+      color: #000;
+      font-weight: 600;
+      border-radius: 20px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 3.5rem;
+}
+
+.project-row {
+  display: flex;
+  gap: 2rem;
+  height: 120vh;
+}
+
+.project-block {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+}
+
+.media-wrapper video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+.landscape {
+  width: 100%;
+}
+
+.portrait {
+  flex: 1;
+}
+
+.landscape>.media-wrapper {
+  width: 70%;
+  height: 66%;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+} 
+
+.portrait>.media-wrapper {
+  width:42%;
+  height: 65%;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.media-wrapper img,
+.media-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-name {
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  width: auto;
+  max-width: 100%;
+  z-index: 500;
+}
+
+
+
+
+
+
 
 
     </style>
-</head>
 
+
+
+</head>
 <body>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ByteTabs Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-  
 
     <img src="./logo.jpg" alt="ByteTabs Logo" class="logo" />
 
@@ -434,6 +719,31 @@ a:hover {
 
 
 
+
+
+  <section class="quote-section">
+    <h2>Crafting digital solutions with the best technologies around the globe.</h2>
+  </section>
+
+
+
+ <section class="tech-grid" id="tech-grid">
+  <div class="tech-card"><span class="tech-text">HTML5</span></div>
+  <div class="tech-card"><span class="tech-text">CSS3</span></div>
+  <div class="tech-card"><span class="tech-text">JavaScript</span></div>
+  <div class="tech-card"><span class="tech-text">React</span></div>
+  <div class="tech-card"><span class="tech-text">Node.js</span></div>
+  <div class="tech-card"><span class="tech-text">Express.js</span></div>
+  <div class="tech-card"><span class="tech-text">MongoDB</span></div>
+  <div class="tech-card"><span class="tech-text">MySQL</span></div>
+  <div class="tech-card"><span class="tech-text">Tailwind CSS</span></div>
+  <div class="tech-card"><span class="tech-text">Bootstrap</span></div>
+  <div class="tech-card"><span class="tech-text">Git</span></div>
+  <div class="tech-card"><span class="tech-text">GitHub</span></div>
+  <div class="tech-card"><span class="tech-text">Firebase</span></div>
+  <div class="tech-card"><span class="tech-text">Next.js</span></div>
+  <div class="tech-card"><span class="tech-text">TypeScript</span></div>
+</section>
 
 
 
@@ -516,46 +826,180 @@ a:hover {
 
 
 
+  <header class="work-header">
+    <h1>World-class digital <br>products, idea to<br> execution.</h1>
+  </header>
+
+  <div class="work-categories"> 
+    <a href="#">Featured</a>
+    <a href="#">Commercial</a>
+    <a href="#">Not for Profit</a>
+    <a href="#">Education</a>
+    <a href="#">Community & Purpose</a>
+    <a href="#">Innovation</a>
+    <a href="#">UI & UX</a>
+  </div>
+
+ 
 
 
-  
-   <!-- Contact Section -->
-<section id="contact" class="contact">
+
+<section class="projects">
+  <!-- First Set -->
+  <div class="project-row">
+    <div class="project-block landscape" style="background-image: url('https://a-us.storyblok.com/f/1017006/3720x2280/c7c8f88227/curtin-open-landscape-card.jpg');">
+      <div class="media-wrapper">
    
 
+         <video autoplay muted loop playsinline>
+        <source src="https://previews.customer.envatousercontent.com/h264-video-previews/510115dc-3770-4656-bf29-53f6b288c954/52046121.mp4" type="video/mp4">
+      </video>
 
-    <h2 class="animated-heading">
-        <span class="heading-row">
-          Let’s make 
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
-          </svg>
-        </span>
-        <br>
-        something <span id="word-rotate">epic</span>
-      </h2>
+      </div>
+      <div class="project-name">Project One</div>
+    </div>
+  </div>
+  <div class="project-row">
+    <div class="project-block portrait" style="background-image: url('https://a-us.storyblok.com/f/1017006/4928x6216/906f5644f4/background-2.png');">
+      <div class="media-wrapper">
+        <img src="vegetable.jpg" alt="Project 2" />
+      </div>
+      <div class="project-name">Project Two</div>
+    </div>
+    <div class="project-block portrait" style="background-image: url('https://a-us.storyblok.com/f/1017006/1866x2805/5f879805d6/card-portrait.jpg/m/1864x2804/filters:quality(80)');">
+      <div class="media-wrapper">
+        <img src="https://img.freepik.com/premium-photo/modern-page-mobile-phone-business_1108533-52651.jpg?uid=R135641208&ga=GA1.1.443886148.1745614716&semt=ais_hybrid&w=740" alt="Project 3" />
+      </div>
+      <div class="project-name">Project Three</div>
+    </div>
+  </div>
+  <!-- Second Set -->
+  <div class="project-row">
+    <div class="project-block landscape" style="background-image: url('https://a-us.storyblok.com/f/1017006/3720x2312/168f233d1f/card-pique-landscape.jpg');">
+      <div class="media-wrapper">
+     <video autoplay muted loop playsinline>
+        <source src="https://cdn.dribbble.com/userupload/16597752/file/original-3a6f36898d3aab599097d9592e84c804.mp4" type="video/mp4">
+      </video>
 
-    <!-- <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button class="btn" type="submit">Send Message</button>
-    </form>
+      
+      </div>
+      <div class="project-name">Project Four</div>
+    </div>
+  </div>
+  <div class="project-row">
+    <div class="project-block portrait" style="background-image: url('https://a-us.storyblok.com/f/1017006/1864x2337/40d89ecd09/talknwalk-portrait-card.jpg/m/1864x2804/filters:quality(80)');">
+      <div class="media-wrapper">
+        <img src="https://img.freepik.com/premium-photo/cape-verde-adventure-tour-with-hover-effect-adventure-theme-travel-website-layout-idea-designs_1020495-624375.jpg?ga=GA1.1.443886148.1745614716&semt=ais_hybrid&w=740" alt="Project 5" />
+      </div>
+      <div class="project-name">Project Five</div>
+    </div>
+    <div class="project-block portrait" style="background-image: url('https://a-us.storyblok.com/f/1017006/1866x2805/3d8119288a/outer.jpg/m/1864x2804/filters:quality(80)');">
+      <div class="media-wrapper">
+        <img src="phone.jpg" alt="Project 6" />
+      </div>
+      <div class="project-name">Project Six</div>
+    </div>
+  </div>
+  <!-- Third Set -->
+  <div class="project-row">
+    <div class="project-block landscape" style="background-image: url('https://a-us.storyblok.com/f/1017006/1750x1167/6ba976945b/scotchbg.webp');">
+      <div class="media-wrapper">
+        
+  <video autoplay muted loop playsinline>
+        <source src="
+https://player.vimeo.com/progressive_redirect/playback/895726070/rendition/720p/file.mp4?loc=external&log_user=0&signature=4de980946b4b2ec785eddc44724bf1b4bd4d4d39c31f38168e0dfd3701abfd69
+" type="video/mp4">
+      </video>
+
+
+      </div>
+      <div class="project-name">Project Seven</div>
+    </div>
+  </div>
+  <div class="project-row">
+    <div class="project-block portrait" style="background-image: url('https://a-us.storyblok.com/f/1017006/1866x2805/cde0facab0/mmc-portrait-outer.jpg/m/1864x2804/filters:quality(80)');">
+      <div class="media-wrapper">
+        <img src="eight.jpg" alt="Project 8" />
+      </div>
+      <div class="project-name">Project Eight</div>
+    </div>
+    <div class="project-block portrait" style="background-image: url('https://a-us.storyblok.com/f/1017006/1866x2805/7d537f1904/glmobouter.jpg/m/1864x2804/filters:quality(80)');">
+      <div class="media-wrapper" style="background-image: url('food.jpg');">
+        <!-- <img src="food.jpg" alt="Project 9" /> -->
+      </div>
+      <div class="project-name">Project Nine</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+  <section id="contact" class="contact">
+
+  <h2 class="animated-heading">
+    <span class="heading-row">
+      Let’s make 
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+      </svg>
+    </span>
+    <br>
+    something <span id="word-rotate">epic</span>
+  </h2>
+
+  <!-- Flex wrapper for contact info and globe -->
+  <div class="contact-wrapper">
+    
+    <div class="contact-details">
+      <p class="global"><i class="fa-solid fa-globe"></i> We work globally</p>
+      <p class="submit-brief">
+        Submit a brief
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+        </svg>
+      </p>
+      <p class="email">contact@bytetabs.com</p>
+    </div>
+
+ 
+
+
+    </div>
+
+   
+
   
-    <p>Contact: hello@bytetabs.com | +91-XXXX-XXXXXX</p>
-    <p>Socials: 
-      <a href="#">LinkedIn</a> | 
-      <a href="#">Instagram</a> | 
-      <a href="#">GitHub</a>
-    </p>
- -->
-
-
-  </section>
+</section>
 
 
 
 
+<footer class="site-footer">
+  <div class="footer-left">
+    <p>© 2025 ByteTabs.</p>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms & Conditions</a>
+  </div>
+
+  <div class="footer-right">
+    <a href="#" class="social-link" aria-label="GitHub">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="#" class="social-link" aria-label="Dribbble">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" class="social-link" aria-label="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="#" class="social-link" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    
+  </div>
+</footer>
 
 
 
@@ -564,8 +1008,9 @@ a:hover {
 
 
 
-
-
+<!-- Add these in your <head> or before your globe script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/controls/OrbitControls.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -693,7 +1138,6 @@ a:hover {
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
     
     // Dummy SVG sets (replace with real <svg> content or paths)
@@ -897,6 +1341,75 @@ setInterval(() => {
     setInterval(rotateWord, 2000);
   </script>
   
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  // Fade-in animation on load
+  gsap.from(".tech-card", {
+    opacity: 0,
+    y: 40,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: "power2.out"
+  });
+
+  // Cursor interaction with only the text
+  document.querySelectorAll('.tech-card').forEach((card) => {
+    const text = card.querySelector('.tech-text');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const offsetX = e.clientX - rect.left - rect.width / 2;
+      const offsetY = e.clientY - rect.top - rect.height / 2;
+
+      gsap.to(text, {
+        x: offsetX * 0.15,
+        y: offsetY * 0.15,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(text, {
+        x: 0,
+        y: 0,
+        duration: 0.4,
+        ease: "power3.out"
+      });
+    });
+  });
+</script>
+
+
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll(".project-block").forEach((block) => {
+  const name = block.querySelector(".project-name");
+
+  gsap.fromTo(name, {
+    y: 0
+  }, {
+    y: -block.clientHeight / 2,
+    scrollTrigger: {
+      trigger: block,
+      start: "bottom ",
+      end: "top",
+      
+      scrub: true,
+    }
+  });
+});
+</script>
+
+
 
 
 </body>
